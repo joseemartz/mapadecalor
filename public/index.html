@@ -19,11 +19,52 @@
         bottom: 0;
         width: 100%;
       }
+      #menu {
+        
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        border-radius: 3px;
+        width: 150px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+      }
+
+      #menu a {
+        font-size: 13px;
+        color: #ffffff;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      }
+      .lvl0 {
+        background: rgba(0,185,243,0.5);
+      }
+      .lvl1 {
+        background: rgba(255,223,0,0.5);
+      }
+      .lvl2 {
+        background: rgba(255,105,0,0.5);
+      }
+      .lvl3 {
+        background: rgba(255,55,0,0.5);
+      }
+    
     </style>
 </head>
 <body>
 <div id='map'></div>
-<nav id="menu"></nav>
+<nav id="menu">
+    <a href="#" class="lvl0">Menor a 30</a>
+    <a href="#" class="lvl1">De 31 a 60</a>
+    <a href="#" class="lvl2">De 61 a 90</a>
+    <a href="#" class="lvl3">Mayor a 91</a>
+</nav>
 </body>
     <script>
     var contagiados;
@@ -56,25 +97,4 @@
             [1500, "rgba(255,55,0,0.6)"]
         ])
     });
-    function addLayer(name, id) {
-        var link = document.createElement('a');
-        link.href = '#';
-        link.className = 'active';
-        link.textContent = name;
-
-        link.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var visibility = map.getLayoutProperty(id, 'visibility');
-            if (visibility === 'visible') {
-                map.setLayoutProperty(id, 'visibility', 'none');
-                this.className = '';
-            } else {
-                this.className = 'active';
-                map.setLayoutProperty(id, 'visibility', 'visible');
-            }
-        };
-        var layers = document.getElementById('menu');
-        layers.appendChild(link);
-    }
 </script>
